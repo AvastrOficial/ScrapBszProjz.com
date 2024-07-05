@@ -6,3 +6,5 @@
 
  ## Fotos de la herramienta :
 ![image](https://github.com/AvastrOficial/ScrapBszProjz.com/assets/91764815/a0a755fd-e965-4016-85ed-207364beb997)
+## Emula el fork en replit :
+https://replit.com/@StrAva1/scrping-Bsz-projz
