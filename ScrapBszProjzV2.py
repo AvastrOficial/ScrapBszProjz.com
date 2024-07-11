@@ -71,26 +71,36 @@ def descargar_imagenes(url):
         image_urls.append(img_src)
         img_name = os.path.basename(img_src)
 
-        if 'header-logo' in img_name:
+        if 'header-logo' in img_name or 'shop-icon' in img_name:
             guardar_imagen(img_src, 'logo de la app', img_name)
         elif 'ant-avatar ant-avatar-circle ant-avatar-image' in img.get('class', []):
             guardar_imagen(img_src, 'ultimos usuarios unidos', img_name)
+        elif img.get('alt') == 'user-icon':
+            guardar_imagen(img_src, 'avatar', img_name)
         else:
             guardar_imagen(img_src, 'Fotos de usuarios unidos', img_name)
 
     styles = soup.find_all(style=True)
     for style in styles:
         style_content = style.get('style')
-        urls = re.findall(r'background-image:\s*url\(["\']?(.*?)["\']?\)', style_content)
+        urls = re.findall(r'background-image:\s*url\(["\']?(http://bgm1.projz.com/.*?)["\']?\)', style_content)
         for img_url in urls:
+            img_src = urljoin(url, img_url)
+            image_urls.append(img_src)
+            img_name = os.path.basename(img_src)
+            guardar_imagen(img_src, 'fondo del avatar', img_name)
+
+        urls_portada = re.findall(r'background-image:\s*url\(["\']?(http://ccm1.projz.com/.*?)["\']?\)', style_content)
+        for img_url in urls_portada:
             img_src = urljoin(url, img_url)
             image_urls.append(img_src)
             img_name = os.path.basename(img_src)
             guardar_imagen(img_src, 'portada de fiesta', img_name)
 
-    with open('Fotos de usuarios unidos/imagenes.json', 'w') as f:
+    os.makedirs('logo de la app', exist_ok=True)
+    with open('logo de la app/imagenes.json', 'w') as f:
         json.dump({'imagenes': image_urls}, f, indent=4)
-    print('Las URLs de las imágenes han sido guardadas en Fotos de usuarios unidos/imagenes.json')
+    print('Las URLs de las imágenes han sido guardadas en logo de la app/imagenes.json')
 
 def obtener_id_chat(url):
     api_url = f'https://www.projz.com/api/f/v1/parse-share-link?url={url}'
@@ -140,6 +150,9 @@ def obtener_id_chat(url):
     except json.JSONDecodeError:
         print('La respuesta no es un JSON válido.')
 
+    # Descargar imágenes del chat o fiesta
+    descargar_imagenes(url)
+
 def mostrar_mensaje_redes_sociales():
     print("¡Síguenos en nuestras redes sociales!")
     print("Github : @AvastrOficial")
@@ -158,7 +171,6 @@ if __name__ == "__main__":
         elif opcion == "3":
             url_chat_fiesta = input("Por favor, introduce la URL del chat o fiesta: ").strip()
             obtener_id_chat(url_chat_fiesta)
-            descargar_imagenes(url_chat_fiesta)
         else:
             print("Opción no válida. Por favor, selecciona 1, 2 o 3.")
 
