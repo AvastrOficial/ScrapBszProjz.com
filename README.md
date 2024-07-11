@@ -8,6 +8,8 @@
 > 3 : al selecionar podras estrer la foto portada del chat , tambien podras tener el logo de z y podras tener las fotos de los 5 ultimos usuarios ique ingresaron al chat o fiesta ..
 <br>
 Un video como seria al selecionar el 3 : https://files.catbox.moe/8w1hst.mp4
+<br>
+Un video como seria al selecionar el 1 : https://files.catbox.moe/2lhfz5.mp4 
 
 ## Istalacion para termux :
  > pip install Pillow
