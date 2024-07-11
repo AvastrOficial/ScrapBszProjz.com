@@ -1,7 +1,7 @@
 # ScrapBszProjz.com
 > Esta herramienta hace un scrap a un url mediante un cambio de entorno entra a un chrhom antiguo para evitar protocologos de seguridad de coross , donde utilizamos chorom para visualizar el url extrallendo falcimente con una peticion get con las id de etiquetas en el css de la pagina y de su scripts
 ## explicacion de codigo :
-> 1 : al selecionarlo podras estraer la foto de su avatar y foto de su fondo de su perfil
+> 1 : al selecionar podras estraer la foto de su avatar y foto de su fondo de su perfil
 > <br>
 > 2 : al selecionar podras ver nuestro canal de telegram y github
 > <br>
